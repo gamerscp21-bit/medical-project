@@ -1,0 +1,9 @@
+/* ============================================
+   HealthSync — More Page Styles
+   ============================================ */
+
+body {
+  background-color: #f6faf9;
+  color: #181c1c;
+  -webkit-tap-highlight-color: transparent;
+}

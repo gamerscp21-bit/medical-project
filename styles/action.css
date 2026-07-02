@@ -1,0 +1,13 @@
+/* ============================================
+   HealthSync — Action Page Styles
+   ============================================ */
+
+body {
+  background-color: #f6faf9;
+  color: #181c1c;
+  -webkit-font-smoothing: antialiased;
+}
+
+.step-transition {
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-out;
+}

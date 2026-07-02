@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HealthSync | Welcome</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Atkinson+Hyperlegible+Next:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="tailwind-config.js"></script>
+<link rel="stylesheet" href="styles/shared.css"/>
+<link rel="stylesheet" href="styles/login.css"/>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md overflow-x-hidden">
+<!-- Top AppBar (Identity Anchor) -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-margin_mobile md:px-lg h-16 bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="medical_services">medical_services</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tight">HealthSync</h1>
+</div>
+<div class="hidden md:flex items-center gap-md">
+<button class="text-on-surface-variant font-label-sm hover:text-primary transition-colors">Support</button>
+<button class="text-on-surface-variant font-label-sm hover:text-primary transition-colors">Privacy</button>
+</div>
+</header>
+<main class="flex-grow pt-24 pb-lg px-margin_mobile flex flex-col items-center justify-center relative">
+<!-- Background decorative element -->
+<div class="absolute top-0 left-0 w-full h-full -z-10 opacity-30 pointer-events-none">
+
+</div>
+<div class="w-full max-w-[1000px] flex flex-col md:flex-row gap-lg">
+<!-- LEFT: Brand & Visuals -->
+<div class="hidden md:flex flex-1 flex-col justify-center pr-lg">
+<h2 class="font-display-lg text-display-lg text-primary leading-tight mb-md">Connected Care for Everyone.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-xl">Access medical records, book appointments, and consult with professionals in one secure ecosystem.</p>
+<!-- Minimal Bento Feature Display -->
+<div class="grid grid-cols-2 gap-md">
+<div class="p-md bg-surface border border-outline-variant rounded-xl flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="security">security</span>
+<span class="font-label-sm">HIPAA Compliant</span>
+</div>
+<div class="p-md bg-surface border border-outline-variant rounded-xl flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="bolt">bolt</span>
+<span class="font-label-sm">Instant Records</span>
+</div>
+</div>
+<div class="mt-xl">
+<div class="w-full h-64 rounded-3xl bg-cover bg-center shadow-sm" data-alt="A clean, professional medical office environment with soft natural lighting coming through large windows. Minimalist furniture in teal and white tones creates a calm, high-end atmosphere. High-resolution digital screens showing abstract DNA helices and medical data are visible in the background, reinforcing a sense of advanced healthcare technology." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCebGFZYYI5bmpAq7danoJNigB-B_tSe5Tk8j1n53YSHcVr93VKEhBzlZHST-YYq7vHf1-DXp1vcRGHhRWvtjuWNCeTC0Qupd7vut1RxVZ4OIX8rIuK_UeHckQsAGzhQ2EtMIZEgVmVLXkSeuGcthzfcfRBN_XlRkJEKeJ6TuEcuRFqfBmwdMYV-VS462hrLfVC1jF27YY-YkrgJWyKEs5NA7Kw_OYsihnYIoPTm-dme865h_bxVZX0FGfqsKPzaMpC2hh_KCc3yg2Z')"></div>
+</div>
+</div>
+<!-- RIGHT: Onboarding Container -->
+<div class="w-full md:w-[460px] glass-card rounded-[32px] shadow-sm p-lg md:p-xl flex flex-col">
+<div class="space-y-lg" id="step-1">
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Get Started</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Select your primary role to continue.</p>
+</div>
+<!-- Role Selection (Asymmetric Chips) -->
+<div class="grid grid-cols-2 gap-sm">
+<button class="role-card flex flex-col items-center justify-center p-md border border-outline-variant rounded-2xl hover:bg-surface-container-low transition-all active:scale-95 text-on-surface-variant group" id="role-patient" onclick="selectRole('patient')">
+<span class="material-symbols-outlined text-3xl mb-xs group-[.active]:text-primary" data-icon="person">person</span>
+<span class="font-label-sm font-bold">Patient</span>
+</button>
+<button class="role-card flex flex-col items-center justify-center p-md border border-outline-variant rounded-2xl hover:bg-surface-container-low transition-all active:scale-95 text-on-surface-variant group" id="role-staff" onclick="selectRole('staff')">
+<span class="material-symbols-outlined text-3xl mb-xs group-[.active]:text-primary" data-icon="medical_information">medical_information</span>
+<span class="font-label-sm font-bold">Medical Staff</span>
+</button>
+<button class="role-card flex flex-col items-center justify-center p-md border border-outline-variant rounded-2xl hover:bg-surface-container-low transition-all active:scale-95 text-on-surface-variant group" id="role-lab" onclick="selectRole('lab')">
+<span class="material-symbols-outlined text-3xl mb-xs group-[.active]:text-primary" data-icon="biotech">biotech</span>
+<span class="font-label-sm font-bold">Lab / Radiology</span>
+</button>
+<button class="role-card flex flex-col items-center justify-center p-md border border-outline-variant rounded-2xl hover:bg-surface-container-low transition-all active:scale-95 text-on-surface-variant group" id="role-pharmacy" onclick="selectRole('pharmacy')">
+<span class="material-symbols-outlined text-3xl mb-xs group-[.active]:text-primary" data-icon="local_pharmacy">local_pharmacy</span>
+<span class="font-label-sm font-bold">Pharmacy</span>
+</button>
+</div>
+<div class="space-y-md">
+<!-- Phone Input -->
+<div class="space-y-xs">
+<label class="font-label-sm text-on-surface-variant ml-xs">Phone Number</label>
+<div class="flex gap-sm">
+<div class="w-20 border border-outline-variant rounded-xl bg-surface flex items-center justify-center text-on-surface-variant font-body-md">+1</div>
+<input class="flex-grow border border-outline-variant rounded-xl bg-surface px-md py-3 text-on-surface font-body-md focus:border-primary" placeholder="555 012 3456" type="tel"/>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary font-title-md py-4 rounded-xl shadow-sm hover:opacity-90 active:scale-[0.98] transition-all" onclick="goToStep(2)">Send OTP</button>
+<div class="relative flex items-center justify-center py-sm">
+<div class="absolute inset-0 flex items-center"><div class="w-full border-t border-outline-variant"></div></div>
+<span class="relative bg-white px-md text-on-surface-variant text-label-sm">OR CONTINUE WITH</span>
+</div>
+<!-- Social Login -->
+<div class="flex gap-md">
+<button class="flex-1 flex items-center justify-center gap-sm border border-outline-variant rounded-xl py-3 hover:bg-surface-container-low transition-colors">
+<img alt="Google" class="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmm4m6973soLBU4LDBoBDXdGO3epUiYvYjwhBT-JoDNxMYVE--EQmn1co2A7bqv9Bnb3VwXbb3KTWmyj7mPkosuX_viVVsQLNqpvT2gyZdwwy_ZpMjYYYca1xYnapXoYaIutzGIAj5X6g5TxRatCdyuL15yjpfjMKTKHwohSe1FXSoCgW9V5wNGwXt6RrOYEplRl3mXEATcjtqHJs2fFszg4k51qmoRF8lcXSdH_A22G4GsKqXZSfOw17hFojpcpoMu2fC92Bfm_qk"/>
+<span class="font-label-sm">Google</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-sm border border-outline-variant rounded-xl py-3 hover:bg-surface-container-low transition-colors">
+<img alt="Facebook" class="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCj-SjfR_DHYlIO--je3uytETWrZ0x7zrYYSyW1LuuIl3eYqlNBZg3RCFX-8vqxkIVYZrTyHQgzNv54c7J0XjsP8d7emjG9sYV6DrBFJbSenYMBRHdFP78ZcbuFIcB18Minh_jNgdLTnwZ1ohPbCR5GYAGnZ5oIsU9kKgwlwASYjEh25t9bNqSHcwDUPRQhCLi528Yn1l1x1JTsm-omBaDVXX-tSPwljvcRVMyqJwfLrU2NMQqRoLM8rQwtnEju4L4wmGLhjoCgi7BG"/>
+<span class="font-label-sm">Facebook</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Step 2: OTP Verification -->
+<div class="hidden space-y-lg" id="step-2">
+<button class="flex items-center gap-xs text-primary font-label-sm mb-md" onclick="goToStep(1)">
+<span class="material-symbols-outlined text-sm" data-icon="arrow_back">arrow_back</span> Back
+                    </button>
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Verify Identity</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Enter the 6-digit code sent to your phone.</p>
+</div>
+<div class="flex justify-between gap-xs">
+<input class="w-12 h-14 border border-outline-variant rounded-xl bg-surface text-center font-headline-lg text-primary focus:border-primary" maxlength="1" type="text"/>
+<input class="w-12 h-14 border border-outline-variant rounded-xl bg-surface text-center font-headline-lg text-primary focus:border-primary" maxlength="1" type="text"/>
+<input class="w-12 h-14 border border-outline-variant rounded-xl bg-surface text-center font-headline-lg text-primary focus:border-primary" maxlength="1" type="text"/>
+<input class="w-12 h-14 border border-outline-variant rounded-xl bg-surface text-center font-headline-lg text-primary focus:border-primary" maxlength="1" type="text"/>
+<input class="w-12 h-14 border border-outline-variant rounded-xl bg-surface text-center font-headline-lg text-primary focus:border-primary" maxlength="1" type="text"/>
+<input class="w-12 h-14 border border-outline-variant rounded-xl bg-surface text-center font-headline-lg text-primary focus:border-primary" maxlength="1" type="text"/>
+</div>
+<button class="w-full bg-primary text-on-primary font-title-md py-4 rounded-xl shadow-sm hover:opacity-90 active:scale-[0.98] transition-all" id="verify-btn" onclick="handleVerification()">Verify Code</button>
+<p class="text-center font-label-sm text-on-surface-variant">Didn't receive a code? <span class="text-primary font-bold cursor-pointer">Resend</span></p>
+</div>
+<!-- Step 3: Medical Staff Extra Fields -->
+<div class="hidden space-y-md custom-scrollbar max-h-[618px] overflow-y-auto pr-2" id="step-staff">
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Professional Verification</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Please provide your medical credentials.</p>
+</div>
+<div class="space-y-sm">
+<div class="space-y-xs">
+<label class="font-label-sm text-on-surface-variant">Hospital / Clinic Name</label>
+<input class="w-full border border-outline-variant rounded-xl bg-surface px-md py-3 text-on-surface font-body-md focus:border-primary" placeholder="St. Mary's General" type="text"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-sm text-on-surface-variant">Medical Specialization</label>
+<select class="w-full border border-outline-variant rounded-xl bg-surface px-md py-3 text-on-surface font-body-md focus:border-primary appearance-none bg-[url('https://cdn-icons-png.flaticon.com/512/60/60995.png')] bg-[length:12px] bg-[right_1rem_center] bg-no-repeat">
+<option>Cardiology</option>
+<option>Neurology</option>
+<option>General Practice</option>
+<option>Pediatrics</option>
+<option>Radiology</option>
+</select>
+</div>
+<div class="space-y-xs">
+<label class="font-label-sm text-on-surface-variant">University</label>
+<input class="w-full border border-outline-variant rounded-xl bg-surface px-md py-3 text-on-surface font-body-md focus:border-primary" placeholder="Harvard Medical School" type="text"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-sm text-on-surface-variant">Graduation Serial Number</label>
+<input class="w-full border border-outline-variant rounded-xl bg-surface px-md py-3 text-on-surface font-body-md focus:border-primary" placeholder="MED-12345-XYZ" type="text"/>
+</div>
+</div>
+<!-- Notice Area -->
+<div class="bg-secondary-container/30 border border-secondary p-md rounded-xl flex gap-sm">
+<span class="material-symbols-outlined text-secondary" data-icon="info">info</span>
+<p class="font-label-sm text-on-secondary-container"><strong>Pending Admin Approval:</strong> Your account will be reviewed by our compliance team within 24-48 hours after submission.</p>
+</div>
+<button class="w-full bg-primary text-on-primary font-title-md py-4 rounded-xl shadow-sm hover:opacity-90 active:scale-[0.98] transition-all" onclick="goToStep('success')">Submit for Review</button>
+</div>
+<!-- Step: Success / Final Redirect -->
+<div class="hidden space-y-lg text-center py-xl" id="step-success">
+<div class="w-20 h-20 bg-secondary-container text-secondary rounded-full flex items-center justify-center mx-auto mb-md">
+<span class="material-symbols-outlined text-5xl" data-icon="verified_user">verified_user</span>
+</div>
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Registration Submitted</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-sm" id="success-msg">Your profile is being processed. We'll notify you once you're ready to go.</p>
+</div>
+<button class="w-full bg-surface-container-high text-on-surface font-title-md py-4 rounded-xl hover:bg-surface-container-highest transition-all" onclick="location.reload()">Back to Home</button>
+</div>
+</div>
+</div>
+</main>
+<footer class="mt-auto px-margin_mobile md:px-lg py-md border-t border-outline-variant flex flex-col md:flex-row justify-between items-center text-on-surface-variant gap-sm">
+<span class="font-label-sm">© 2024 HealthSync Inc. All rights reserved.</span>
+<div class="flex gap-md font-label-sm">
+<a class="hover:text-primary" href="#">Terms of Service</a>
+<a class="hover:text-primary" href="#">Global Security Standards</a>
+</div>
+</footer>
+<script src="scripts/login.js"></script>
+</body></html>

@@ -1,0 +1,19 @@
+/* ============================================
+   HealthSync — Feed Page Styles
+   ============================================ */
+
+body {
+  font-family: "Atkinson Hyperlegible Next", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #bdc9c8;
+  border-radius: 10px;
+}

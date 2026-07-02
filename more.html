@@ -1,0 +1,111 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>HealthSync - More Menu</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="tailwind-config.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Atkinson+Hyperlegible+Next:wght@400;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/shared.css">
+<link rel="stylesheet" href="styles/more.css">
+</head>
+<body class="font-body-md text-body-md antialiased pb-20">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-margin_mobile md:px-lg bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline h-16">
+<div class="flex items-center gap-md">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary dark:text-inverse-primary">HealthSync</h1>
+</div>
+<div class="flex items-center">
+<button class="material-symbols-outlined text-primary dark:text-inverse-primary hover:bg-surface-container-high transition-colors p-2 rounded-full active:scale-95 duration-150">notifications</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-20 px-margin_mobile max-w-container_max_width mx-auto">
+<!-- Profile Header Section (Asymmetric Bento Component) -->
+<section class="mb-lg">
+<div class="glass-card rounded-xl p-lg flex flex-col md:flex-row items-center gap-lg border-t-4 border-primary">
+<div class="relative">
+<img class="w-24 h-24 rounded-full border-4 border-white shadow-sm object-cover" data-alt="A professional studio portrait of a friendly male patient in his early 30s" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZD-xdl8C3d9x522FaauGt6b9wCNt1PHjrVHheBOgi6a1rXm--P-Lwl7KhiKhu6YtYPv5T1ktk-RTttrE3hIL5JSWDl2JWleyilWQsmI63NtMaS2dUiNHC6kBsUXihXrP-wuJ3w12dRfDDf5jO4xfhosBy-e9yVtKcBYv8iwHfOdmqqR5E4Hm5hhR2VrZEmb_MHJqRFyVHXfLmXHB2GLSH7aCoJ_RCjylruuaxouQLO9kMT5VCpwstMdhEqUM2NhRh3x4jgAI5gVrf">
+<div class="absolute bottom-0 right-0 bg-secondary w-6 h-6 rounded-full border-2 border-white flex items-center justify-center">
+<span class="material-symbols-outlined text-[12px] text-white" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="text-center md:text-left flex-1">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Alex Johnson</h2>
+<p class="text-on-surface-variant font-body-md">Patient ID: #8821 • Premium Member</p>
+<div class="mt-md flex flex-wrap justify-center md:justify-start gap-xs">
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-label-sm font-label-sm">Blood Type: O+</span>
+<span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-label-sm font-label-sm">Healthy Status</span>
+</div>
+</div>
+<button class="bg-primary text-on-primary px-lg py-sm rounded-full font-label-sm flex items-center gap-sm active:scale-95 transition-all shadow-sm">
+                    View Profile <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Primary List Menu -->
+<div class="space-y-sm">
+<h3 class="text-on-surface-variant font-label-sm uppercase tracking-widest px-xs mb-sm">Primary Actions</h3>
+<!-- Wallet Navigation -->
+<a class="group flex items-center justify-between p-md bg-white border border-outline-variant rounded-xl hover:bg-surface-container transition-all duration-200" href="mywallet.html">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-xl bg-primary-container/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</div>
+<div>
+<p class="font-title-md text-title-md text-on-surface">My Wallet</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Manage cards, insurance &amp; balances</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">chevron_right</span>
+</a>
+<!-- Donations Navigation -->
+<a class="group flex items-center justify-between p-md bg-white border border-outline-variant rounded-xl hover:bg-surface-container transition-all duration-200" href="#">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-xl bg-tertiary-container/10 flex items-center justify-center text-tertiary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
+</div>
+<div>
+<p class="font-title-md text-title-md text-on-surface">Donations</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Support healthcare initiatives</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-tertiary transition-colors">chevron_right</span>
+</a>
+</div>
+
+<!-- Logout Section -->
+<div class="mt-xl pb-lg flex justify-center">
+<button id="logout-btn" class="flex items-center gap-sm text-error font-title-md hover:bg-error-container/20 px-lg py-sm rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined">logout</span>
+                Logout from HealthSync
+            </button>
+<div class="h-20"></div>
+</main>
+
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pb-safe bg-surface h-16 border-t border-outline-variant dark:border-outline shadow-lg">
+<a href="feed.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined">rss_feed</span>
+<span class="font-label-sm text-label-sm">Feed</span>
+</a>
+<a href="dashboard.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<a href="action.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-label-sm text-label-sm">Actions</span>
+</a>
+<a href="schedule.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined">event_note</span>
+<span class="font-label-sm text-label-sm">Schedule</span>
+</a>
+<a href="more.html" class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-4 py-1 transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu</span>
+<span class="font-label-sm text-label-sm">More</span>
+</a>
+</nav>
+
+<script src="scripts/more.js"></script>
+</body></html>
