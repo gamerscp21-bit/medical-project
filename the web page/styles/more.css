@@ -1,0 +1,47 @@
+/* الأيقونات التابعة لـ Material Symbols */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    display: inline-block;
+    line-height: 1;
+}
+
+/* حركة نبض موجات البلوتوث المتكررة */
+.pulse-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pulse-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid #006565;
+    opacity: 0;
+    animation: pulse 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+.pulse-ring:nth-child(2) { animation-delay: 0.5s; }
+
+@keyframes pulse {
+    0% { transform: scale(0.8); opacity: 0.8; }
+    100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* تنعيم التنقل المظهري بين شاشات المعالج */
+.step-transition {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* أنيميشن كتابة ورسم علامة الصح عند النجاح */
+.check-draw {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: draw 0.6s ease-out forwards 0.2s;
+}
+
+@keyframes draw {
+    to { stroke-dashoffset: 0; }
+}

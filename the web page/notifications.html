@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HealthSync - Notifications</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="tailwind-config.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Atkinson+Hyperlegible+Next:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/shared.css">
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-24">
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-margin_mobile md:px-lg h-16 bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-md">
+<a href="javascript:history.back()" class="material-symbols-outlined text-primary hover:bg-surface-container-high p-2 rounded-full active:scale-95 transition-all">arrow_back</a>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Notifications</h1>
+</div>
+<button id="mark-all-read" class="text-primary text-label-sm font-bold hover:underline active:scale-95">Mark all read</button>
+</header>
+<main class="pt-20 px-margin_mobile max-w-lg mx-auto space-y-3">
+<div class="notif-item hs-reveal hs-visible flex gap-md p-md bg-error-container/30 border border-error/20 rounded-xl cursor-pointer hover:bg-error-container/40 transition-all" data-read="false">
+<div class="w-10 h-10 rounded-full bg-error text-on-error flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-[20px]">warning</span></div>
+<div class="flex-1"><p class="font-bold text-sm text-on-error-container">Low Oxygen Warning</p><p class="text-xs text-on-error-container/80 mt-0.5">SpO2 dropped below 92%. Take deep breaths.</p><p class="text-[10px] text-on-surface-variant mt-1">2 min ago</p></div>
+<span class="w-2 h-2 bg-error rounded-full flex-shrink-0 mt-1 notif-dot"></span>
+</div>
+<div class="notif-item hs-reveal flex gap-md p-md bg-surface border border-outline-variant rounded-xl cursor-pointer hover:bg-surface-container transition-all" data-read="false">
+<div class="w-10 h-10 rounded-full bg-primary-container/30 text-primary flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-[20px]">event</span></div>
+<div class="flex-1"><p class="font-bold text-sm">Appointment Reminder</p><p class="text-xs text-on-surface-variant mt-0.5">Dr. Elena Vance — Virtual consult at 10:30 AM</p><p class="text-[10px] text-on-surface-variant mt-1">1 hour ago</p></div>
+<span class="w-2 h-2 bg-primary rounded-full flex-shrink-0 mt-1 notif-dot"></span>
+</div>
+<div class="notif-item hs-reveal flex gap-md p-md bg-surface border border-outline-variant rounded-xl cursor-pointer hover:bg-surface-container transition-all" data-read="true">
+<div class="w-10 h-10 rounded-full bg-secondary-container/30 text-secondary flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-[20px]">medication</span></div>
+<div class="flex-1"><p class="font-bold text-sm text-on-surface-variant">Medication Taken</p><p class="text-xs text-on-surface-variant mt-0.5">Lisinopril 10mg marked as completed</p><p class="text-[10px] text-on-surface-variant mt-1">Today, 8:00 AM</p></div>
+</div>
+<div class="notif-item hs-reveal flex gap-md p-md bg-surface border border-outline-variant rounded-xl cursor-pointer hover:bg-surface-container transition-all" data-read="true">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/20 text-tertiary flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-[20px]">account_balance_wallet</span></div>
+<div class="flex-1"><p class="font-bold text-sm text-on-surface-variant">Wallet Top-up</p><p class="text-xs text-on-surface-variant mt-0.5">+1,000.00 EGP added successfully</p><p class="text-[10px] text-on-surface-variant mt-1">Oct 22, 2023</p></div>
+</div>
+</main>
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pb-safe bg-surface h-16 border-t border-outline-variant shadow-lg">
+<a href="feed.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">rss_feed</span><span class="font-label-sm text-label-sm">Feed</span></a>
+<a href="dashboard.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">dashboard</span><span class="font-label-sm text-label-sm">Dashboard</span></a>
+<a href="action.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">add_circle</span><span class="font-label-sm text-label-sm">Actions</span></a>
+<a href="schedule.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">event_note</span><span class="font-label-sm text-label-sm">Schedule</span></a>
+<a href="more.html" class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-4 py-1 transition-all active:scale-95"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">menu</span><span class="font-label-sm text-label-sm">More</span></a>
+</nav>
+<script src="scripts/animations.js"></script>
+<script src="scripts/app.js"></script>
+<script>
+document.querySelectorAll('.notif-item').forEach(item => {
+  item.addEventListener('click', () => {
+    item.dataset.read = 'true';
+    item.querySelector('.notif-dot')?.remove();
+    item.classList.add('opacity-75');
+    const t = item.querySelector('p.font-bold');
+    if (t) t.classList.add('text-on-surface-variant');
+    const link = item.textContent.includes('Oxygen') ? 'dashboard.html' :
+                 item.textContent.includes('Appointment') ? 'schedule.html' :
+                 item.textContent.includes('Wallet') ? 'mywallet.html' : 'schedule.html';
+    setTimeout(() => HealthSyncApp.navigate(link), 300);
+  });
+});
+document.getElementById('mark-all-read').addEventListener('click', () => {
+  document.querySelectorAll('.notif-item').forEach(item => {
+    item.dataset.read = 'true';
+    item.querySelector('.notif-dot')?.remove();
+  });
+  HealthSyncApp.toast('All notifications marked as read');
+});
+</script>
+</body>
+</html>

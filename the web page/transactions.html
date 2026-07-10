@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HealthSync - Transactions</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="tailwind-config.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Atkinson+Hyperlegible+Next:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/shared.css">
+<link rel="stylesheet" href="styles/mywallet.css">
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-24">
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-margin_mobile h-16 bg-surface border-b border-outline-variant">
+<a href="mywallet.html" class="material-symbols-outlined text-primary hover:bg-surface-container-high p-2 rounded-full active:scale-95 transition-all">arrow_back</a>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">All Transactions</h1>
+<button class="text-primary text-label-sm font-bold" id="filter-btn">Filter</button>
+</header>
+<main class="pt-20 px-margin_mobile max-w-lg mx-auto">
+<div class="flex gap-2 mb-4 overflow-x-auto pb-1">
+<button class="filter-chip px-4 py-1.5 rounded-full bg-primary-container text-on-primary-container text-label-sm font-bold whitespace-nowrap" data-filter="all">All</button>
+<button class="filter-chip px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm whitespace-nowrap" data-filter="in">Income</button>
+<button class="filter-chip px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm whitespace-nowrap" data-filter="out">Expenses</button>
+</div>
+<div id="tx-list" class="bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-sm divide-y divide-outline-variant/30">
+<div class="tx-row zebra-row flex items-center justify-between p-4" data-type="out"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary"><span class="material-symbols-outlined">medical_services</span></div><div><p class="font-medium text-sm">General Physician Consultation</p><p class="text-xs text-on-surface-variant">Oct 24, 2023</p></div></div><p class="font-bold text-error text-sm">- 450.00 EGP</p></div>
+<div class="tx-row zebra-row flex items-center justify-between p-4" data-type="in"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary"><span class="material-symbols-outlined">account_balance_wallet</span></div><div><p class="font-medium text-sm">Wallet Top-up</p><p class="text-xs text-on-surface-variant">Oct 22, 2023</p></div></div><p class="font-bold text-secondary text-sm">+ 1,000.00 EGP</p></div>
+<div class="tx-row zebra-row flex items-center justify-between p-4" data-type="out"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-tertiary-container/10 flex items-center justify-center text-tertiary"><span class="material-symbols-outlined">local_pharmacy</span></div><div><p class="font-medium text-sm">Pharmacy Payment</p><p class="text-xs text-on-surface-variant">Oct 20, 2023</p></div></div><p class="font-bold text-error text-sm">- 125.50 EGP</p></div>
+<div class="tx-row zebra-row flex items-center justify-between p-4" data-type="in"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary"><span class="material-symbols-outlined">replay</span></div><div><p class="font-medium text-sm">Refund: Lab Test</p><p class="text-xs text-on-surface-variant">Oct 15, 2023</p></div></div><p class="font-bold text-secondary text-sm">+ 350.00 EGP</p></div>
+<div class="tx-row zebra-row flex items-center justify-between p-4" data-type="out"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-error-container/30 flex items-center justify-center text-error"><span class="material-symbols-outlined">volunteer_activism</span></div><div><p class="font-medium text-sm">Healthcare Donation</p><p class="text-xs text-on-surface-variant">Oct 10, 2023</p></div></div><p class="font-bold text-error text-sm">- 500.00 EGP</p></div>
+<div class="tx-row zebra-row flex items-center justify-between p-4" data-type="out"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary"><span class="material-symbols-outlined">stethoscope</span></div><div><p class="font-medium text-sm">Cardiology Consultation</p><p class="text-xs text-on-surface-variant">Oct 5, 2023</p></div></div><p class="font-bold text-error text-sm">- 650.00 EGP</p></div>
+</div>
+</main>
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pb-safe bg-surface h-16 border-t border-outline-variant shadow-lg">
+<a href="feed.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">rss_feed</span><span class="font-label-sm text-label-sm">Feed</span></a>
+<a href="dashboard.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">dashboard</span><span class="font-label-sm text-label-sm">Dashboard</span></a>
+<a href="action.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">add_circle</span><span class="font-label-sm text-label-sm">Actions</span></a>
+<a href="schedule.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">event_note</span><span class="font-label-sm text-label-sm">Schedule</span></a>
+<a href="more.html" class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-4 py-1 transition-all active:scale-95"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">menu</span><span class="font-label-sm text-label-sm">More</span></a>
+</nav>
+<script src="scripts/animations.js"></script>
+<script src="scripts/app.js"></script>
+<script>
+document.querySelectorAll('.filter-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('.filter-chip').forEach(c => { c.className = 'filter-chip px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm whitespace-nowrap'; });
+    chip.className = 'filter-chip px-4 py-1.5 rounded-full bg-primary-container text-on-primary-container text-label-sm font-bold whitespace-nowrap';
+    const f = chip.dataset.filter;
+    document.querySelectorAll('.tx-row').forEach(row => {
+      row.style.display = (f === 'all' || row.dataset.type === (f === 'in' ? 'in' : 'out')) ? 'flex' : 'none';
+    });
+  });
+});
+document.getElementById('filter-btn').addEventListener('click', () => HealthSyncApp.toast('Showing all transactions', 'info'));
+</script>
+</body>
+</html>

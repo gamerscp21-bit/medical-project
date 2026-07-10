@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HealthSync - Support</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="tailwind-config.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Atkinson+Hyperlegible+Next:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/shared.css">
+</head>
+<body class="bg-background font-body-md min-h-screen pb-12">
+<header class="fixed top-0 w-full z-50 flex items-center px-margin_mobile h-16 bg-surface border-b border-outline-variant gap-md">
+<a href="index.html" class="material-symbols-outlined text-primary hover:bg-surface-container-high p-2 rounded-full active:scale-95 transition-all">arrow_back</a>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Support</h1>
+</header>
+<main class="pt-20 px-margin_mobile max-w-lg mx-auto space-y-lg">
+<section class="glass-card rounded-2xl p-lg text-center border-t-4 border-primary">
+<span class="material-symbols-outlined text-primary text-4xl mb-2">support_agent</span>
+<h2 class="font-title-md">How can we help?</h2>
+<p class="text-sm text-on-surface-variant mt-1">Our care team is available 24/7 for technical and medical app support.</p>
+</section>
+<div class="space-y-3">
+<a href="tel:+201008821000" class="flex items-center gap-md p-md bg-white border border-outline-variant rounded-xl hover:border-primary transition-all hs-card-hover">
+<span class="material-symbols-outlined text-primary">call</span><div><p class="font-bold text-sm">Phone Support</p><p class="text-xs text-on-surface-variant">+20 100 882 1000</p></div>
+</a>
+<a href="mailto:support@healthsync.com" class="flex items-center gap-md p-md bg-white border border-outline-variant rounded-xl hover:border-primary transition-all hs-card-hover">
+<span class="material-symbols-outlined text-primary">mail</span><div><p class="font-bold text-sm">Email</p><p class="text-xs text-on-surface-variant">support@healthsync.com</p></div>
+</a>
+</div>
+<form id="support-form" class="space-y-md glass-card rounded-xl p-lg">
+<label class="text-label-sm text-on-surface-variant">Subject</label>
+<select class="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface outline-none focus:border-primary"><option>Technical Issue</option><option>Device / Patch Help</option><option>Billing & Wallet</option><option>Other</option></select>
+<label class="text-label-sm text-on-surface-variant">Message</label>
+<textarea rows="4" required class="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface outline-none focus:border-primary resize-none" placeholder="Describe your issue..."></textarea>
+<button type="submit" class="w-full py-3 bg-primary text-on-primary rounded-full font-bold active:scale-[0.98] transition-all">Submit Ticket</button>
+</form>
+</main>
+<script src="scripts/animations.js"></script>
+<script src="scripts/app.js"></script>
+<script>
+document.getElementById('support-form').addEventListener('submit', e => {
+  e.preventDefault();
+  HealthSyncApp.toast('Support ticket submitted! We\'ll reply within 24 hours.');
+  setTimeout(() => window.location.href = 'index.html', 1500);
+});
+</script>
+</body>
+</html>

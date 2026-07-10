@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>HealthSync - More Menu</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Atkinson+Hyperlegible+Next:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <!-- ربط ملف الستايل الخارجي الخاص بالأنيميشن -->
+    <link rel="stylesheet" href="styles/shared.css">
+    <link rel="stylesheet" href="styles/more.css">
+
+    <!-- Tailwind Theme Configuration المخصص بتاعك -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#005316",
+                        "on-tertiary-fixed-variant": "#733512",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#90f691",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#002020",
+                        "inverse-primary": "#76d6d5",
+                        "inverse-on-surface": "#edf2f1",
+                        "on-tertiary-fixed": "#341100",
+                        "primary": "#006565",
+                        "surface-dim": "#d7dbda",
+                        "on-primary-container": "#e3fffe",
+                        "on-secondary-container": "#007322",
+                        "on-primary-fixed-variant": "#004f4f",
+                        "surface": "#f6faf9",
+                        "surface-container-low": "#f0f4f3",
+                        "inverse-surface": "#2c3131",
+                        "outline-variant": "#bdc9c8",
+                        "background": "#f6faf9",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#ebefee",
+                        "surface-container-high": "#e5e9e8",
+                        "tertiary-fixed-dim": "#ffb692",
+                        "surface-tint": "#006a6a",
+                        "on-secondary-fixed": "#002105",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#dfe3e2",
+                        "secondary-fixed": "#93f993",
+                        "on-tertiary-container": "#fff9f7",
+                        "tertiary": "#8b4823",
+                        "on-surface-variant": "#3e4949",
+                        "secondary-fixed-dim": "#77dc7a",
+                        "on-surface": "#181c1c",
+                        "secondary": "#006e20",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#008080",
+                        "primary-fixed": "#93f2f2",
+                        "tertiary-container": "#a96039",
+                        "on-background": "#181c1c",
+                        "surface-bright": "#f6faf9",
+                        "on-secondary": "#ffffff",
+                        "outline": "#6e7979",
+                        "tertiary-fixed": "#ffdbcb",
+                        "primary-fixed-dim": "#76d6d5",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#dfe3e2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "container_max_width": "1280px",
+                        "xl": "40px",
+                        "md": "16px",
+                        "gutter": "24px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "unit": "4px",
+                        "margin_mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Manrope"],
+                        "title-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "body-lg": ["Atkinson Hyperlegible Next"],
+                        "display-lg": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "body-md": ["Atkinson Hyperlegible Next"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f6faf9;
+            color: #181c1c;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md antialiased pb-20">
+
+    <!-- ========================================== -->
+    <!-- الشاشة الأولى: صفحة البروفايل الرئيسية -->
+    <!-- ========================================== -->
+    <div id="profile-screen" class="w-full">
+        <!-- Top App Bar -->
+        <header class="fixed top-0 w-full z-50 flex items-center justify-between px-margin_mobile md:px-lg bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline h-16">
+            <div class="flex items-center gap-md">
+                <button class="material-symbols-outlined text-primary dark:text-inverse-primary hover:bg-surface-container-high transition-colors p-2 rounded-full active:scale-95 duration-150">menu</button>
+                <h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary dark:text-inverse-primary">HealthSync</h1>
+            </div>
+            <div class="flex items-center">
+                <button class="material-symbols-outlined text-primary dark:text-inverse-primary hover:bg-surface-container-high transition-colors p-2 rounded-full active:scale-95 duration-150">notifications</button>
+            </div>
+        </header>
+
+        <!-- Main Content Canvas -->
+        <main class="pt-20 px-margin_mobile max-w-container_max_width mx-auto">
+            <!-- Profile Header Section -->
+            <section class="mb-lg">
+                <div class="glass-card rounded-xl p-lg flex flex-col md:flex-row items-center gap-lg border-t-4 border-primary">
+                    <div class="relative">
+                        <img class="w-24 h-24 rounded-full border-4 border-white shadow-sm object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZD-xdl8C3d9x522FaauGt6b9wCNt1PHjrVHheBOgi6a1rXm--P-Lwl7KhiKhu6YtYPv5T1ktk-RTttrE3hIL5JSWDl2JWleyilWQsmI63NtMaS2dUiNHC6kBsUXihXrP-wuJ3w12dRfDDf5jO4xfhosBy-e9yVtKcBYv8iwHfOdmqqR5E4Hm5hhR2VrZEmb_MHJqRFyVHXfLmXHB2GLSH7aCoJ_RCjylruuaxouQLO9kMT5VCpwstMdhEqUM2NhRh3x4jgAI5gVrf">
+                        <div class="absolute bottom-0 right-0 bg-secondary w-6 h-6 rounded-full border-2 border-white flex items-center justify-center">
+                            <span class="material-symbols-outlined text-[12px] text-white" style="font-variation-settings: 'FILL' 1;">verified</span>
+                        </div>
+                    </div>
+                    <div class="text-center md:text-left flex-1">
+                        <h2 class="font-headline-lg text-headline-lg text-on-surface">Alex Johnson</h2>
+                        <p class="text-on-surface-variant font-body-md">Patient ID: #8821 • Premium Member</p>
+                        <div class="mt-md flex flex-wrap justify-center md:justify-start gap-xs">
+                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-label-sm font-label-sm">Blood Type: O+</span>
+                            <span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-label-sm font-label-sm">Healthy Status</span>
+                        </div>
+                    </div>
+                    <a href="profile.html" class="bg-primary text-on-primary px-lg py-sm rounded-full font-label-sm flex items-center gap-sm active:scale-95 transition-all shadow-sm">
+                        View Profile <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Primary List Menu -->
+            <div class="space-y-sm">
+                <h3 class="text-on-surface-variant font-label-sm uppercase tracking-widest px-xs mb-sm">Primary Actions</h3>
+                
+                <!-- Wallet -->
+                <a class="group flex items-center justify-between p-md bg-white border border-outline-variant rounded-xl hover:bg-surface-container transition-all duration-200" href="mywallet.html">
+                    <div class="flex items-center gap-md">
+                        <div class="w-12 h-12 rounded-xl bg-primary-container/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+                        </div>
+                        <div>
+                            <p class="font-title-md text-title-md text-on-surface">My Wallet</p>
+                            <p class="text-label-sm font-label-sm text-on-surface-variant">Manage cards, insurance &amp; balances</p>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">chevron_right</span>
+                </a>
+
+                <!-- Donations -->
+                <a class="group flex items-center justify-between p-md bg-white border border-outline-variant rounded-xl hover:bg-surface-container transition-all duration-200" href="donations.html">
+                    <div class="flex items-center gap-md">
+                        <div class="w-12 h-12 rounded-xl bg-tertiary-container/10 flex items-center justify-center text-tertiary group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
+                        </div>
+                        <div>
+                            <p class="font-title-md text-title-md text-on-surface">Donations</p>
+                            <p class="text-label-sm font-label-sm text-on-surface-variant">Support healthcare initiatives</p>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined text-outline group-hover:text-tertiary transition-colors">chevron_right</span>
+                </a>
+
+                <!-- Manage Device -->
+                <a href="javascript:void(0)" onclick="openWizard()" class="group flex items-center justify-between p-md bg-white border border-outline-variant rounded-xl hover:bg-surface-container transition-all duration-200 cursor-pointer">
+                    <div class="flex items-center gap-md">
+                        <div class="w-12 h-12 rounded-xl bg-primary-container/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">devices</span>
+                        </div>
+                        <div>
+                            <p class="font-title-md text-title-md text-on-surface">Manage Device</p>
+                            <p class="text-label-sm font-label-sm text-on-surface-variant">Pair and configure your medical patch</p>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">chevron_right</span>
+                </a>
+            </div>
+
+            <!-- Connected Device Info -->
+            <div class="space-y-sm mt-lg">
+                <h3 class="text-on-surface-variant font-label-sm uppercase tracking-widest px-xs mb-sm">Connected Device</h3>
+                <div class="bg-white border border-outline-variant rounded-xl overflow-hidden">
+                    <!-- Device ID / MAC Address -->
+                    <div class="group flex items-center justify-between p-md border-b border-outline-variant/50 hover:bg-surface-container transition-all duration-200">
+                        <div class="flex items-center gap-md">
+                            <div class="w-12 h-12 rounded-xl bg-primary-container/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">memory</span>
+                            </div>
+                            <div>
+                                <p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Device ID / MAC</p>
+                                <p class="font-title-md text-title-md text-on-surface">PATCH-C6-8821</p>
+                            </div>
+                        </div>
+                        <span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary transition-colors" onclick="HealthSyncApp.copyText('PATCH-C6-8821', 'Device ID copied!')">content_copy</span>
+                    </div>
+                    <!-- Firmware Version -->
+                    <div class="group flex items-center justify-between p-md border-b border-outline-variant/50 hover:bg-surface-container transition-all duration-200">
+                        <div class="flex items-center gap-md">
+                            <div class="w-12 h-12 rounded-xl bg-secondary-container/20 flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">system_update</span>
+                            </div>
+                            <div>
+                                <p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Firmware Version</p>
+                                <p class="font-title-md text-title-md text-on-surface">v1.0.0</p>
+                            </div>
+                        </div>
+                        <span class="bg-secondary-container/30 text-on-secondary-container px-2 py-0.5 rounded text-[10px] font-bold uppercase">Up to date</span>
+                    </div>
+                    <!-- Signal Strength (RSSI) -->
+                    <div class="group flex items-center justify-between p-md hover:bg-surface-container transition-all duration-200">
+                        <div class="flex items-center gap-md">
+                            <div class="w-12 h-12 rounded-xl bg-primary-container/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">signal_cellular_alt</span>
+                            </div>
+                            <div>
+                                <p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Signal Strength (RSSI)</p>
+                                <p class="font-title-md text-title-md text-on-surface">Signal: <span class="text-secondary font-bold">Excellent</span></p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <span class="w-1.5 h-2 bg-secondary rounded-sm"></span>
+                            <span class="w-1.5 h-3 bg-secondary rounded-sm"></span>
+                            <span class="w-1.5 h-4 bg-secondary rounded-sm"></span>
+                            <span class="w-1.5 h-5 bg-secondary rounded-sm"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logout Section -->
+            <div class="mt-xl pb-lg flex justify-center">
+                <button class="flex items-center gap-sm text-error font-title-md hover:bg-error-container/20 px-lg py-sm rounded-full transition-colors active:scale-95">
+                    <span class="material-symbols-outlined">logout</span> Logout from HealthSync
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- الشاشة الثانية: صفحة الـ Device Pairing Wizard -->
+    <!-- ========================================== -->
+    <div id="wizard-screen" class="w-full hidden">
+        <!-- Top App Bar الخاص بالـ Wizard -->
+        <header class="fixed top-0 w-full z-50 flex items-center justify-between px-margin_mobile md:px-lg bg-surface border-b border-outline-variant h-16 shadow-sm">
+            <div class="flex items-center gap-md">
+                <button onclick="handleWizardBack()" class="material-symbols-outlined text-primary hover:bg-surface-container-high transition-colors p-2 rounded-full active:scale-95 duration-150">arrow_back</button>
+                <h1 id="wizard-title" class="font-headline-lg-mobile text-headline-lg-mobile text-primary font-bold">Device Pairing Wizard</h1>
+            </div>
+            <button onclick="HealthSyncApp.navigate('support.html')" class="material-symbols-outlined text-primary hover:bg-surface-container-high p-2 rounded-full transition-colors active:scale-95 duration-150">help_outline</button>
+        </header>
+
+        <main class="pt-24 pb-8 px-margin_mobile max-w-md mx-auto">
+            <!-- الـ Step Indicator للخطوات -->
+            <div id="steps-indicator-container" class="flex justify-between items-center mb-8 px-2 transition-all duration-300">
+                <div id="ind-1" class="flex flex-col items-center gap-xs">
+                    <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm transition-all duration-300 shadow-sm">1</div>
+                    <span class="text-xs font-semibold text-primary">Search</span>
+                </div>
+                <div class="flex-grow h-[2px] bg-outline-variant mx-2 mb-4"></div>
+                
+                <div id="ind-2" class="flex flex-col items-center gap-xs opacity-40 transition-all duration-300">
+                    <div class="w-10 h-10 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center font-bold text-sm transition-all duration-300">2</div>
+                    <span class="text-xs font-semibold text-on-surface-variant">Select</span>
+                </div>
+                <div class="flex-grow h-[2px] bg-outline-variant mx-2 mb-4"></div>
+                
+                <div id="ind-3" class="flex flex-col items-center gap-xs opacity-40 transition-all duration-300">
+                    <div class="w-10 h-10 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center font-bold text-sm transition-all duration-300">3</div>
+                    <span class="text-xs font-semibold text-on-surface-variant">Success</span>
+                </div>
+            </div>
+
+            <!-- محتوى خطوات الـ Wizard المدمجة -->
+            <div class="relative w-full">
+                <!-- الخطوة الأولى: البحث عن الرقعة الطبية -->
+                <section id="view-1" class="step-transition w-full flex flex-col items-center">
+                    <!-- Simulation Mode Toggle -->
+                    <div class="w-full flex items-center justify-between p-3 mb-6 bg-surface-container-low rounded-xl border border-outline-variant text-xs shadow-sm">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary text-lg">science</span>
+                            <span class="text-on-surface-variant font-semibold">Simulation Mode (Demo)</span>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="sim-mode-toggle" class="sr-only peer" checked onchange="toggleSimMode()">
+                            <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+                        </label>
+                    </div>
+
+                    <!-- Bluetooth Icon with pulsing animation -->
+                    <div class="mb-6 w-48 h-48 flex items-center justify-center cursor-pointer" onclick="handleBluetoothIconClick()">
+                        <div class="pulse-container w-28 h-28 bg-primary rounded-full shadow-md z-10 hover:scale-105 active:scale-95 transition-transform flex items-center justify-center">
+                            <div class="pulse-ring"></div>
+                            <div class="pulse-ring"></div>
+                            <span id="bluetooth-scan-icon" class="material-symbols-outlined text-white text-4xl">bluetooth</span>
+                        </div>
+                    </div>
+                    
+                    <h2 id="search-status-title" class="text-xl font-bold text-on-surface mb-2">Searching for Devices</h2>
+                    <p id="search-status-text" class="text-on-surface-variant text-sm text-center mb-6">Please ensure your HealthPatch is turned on and nearby.</p>
+                    
+                    <!-- Bluetooth Device List Container -->
+                    <div id="device-list" class="w-full space-y-3">
+                        <!-- Devices will be added here dynamically by JS -->
+                    </div>
+                </section>
+
+                <!-- الخطوة الثانية: جاري الاتصال والمزامنة -->
+                <section id="view-2" class="step-transition hidden absolute top-0 w-full flex flex-col items-center">
+                    <div class="mb-6 h-48 flex items-center justify-center">
+                        <div class="relative">
+                            <!-- Image of HealthPatch Pro -->
+                            <div class="w-36 h-36 bg-cover bg-center rounded-2xl shadow-md border border-outline-variant" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAoAQGng5tIrkqdYptMBXmU05Ge_zJi0ITa-8Tg22QLr5e3OFsQyNgnSsDYgLvPbCLYeecqiHUYitWooUs2J7f5_JrukPtRzbEarCYVxmHsUwCEUIdXux8-q0O91e2ZsCrRFoUx1cH_I9ngm-RC6iV96_NwFA4eCwm7O0apyuSNQaB7uSeFRRxl4DONeND3gXpopbcJYhH-V7bipjq2brUajxMVcJfMoCtlk9gTWI0uxR16L78KAaU_bQ')"></div>
+                            <div class="absolute -bottom-2 -right-2 bg-primary text-white p-2 rounded-full border-2 border-white flex items-center justify-center shadow-md">
+                                <span class="material-symbols-outlined text-sm">link</span>
+                            </div>
+                        </div>
+                    </div>
+                    <h2 class="text-xl font-bold text-on-surface mb-2">Connecting...</h2>
+                    <p class="text-on-surface-variant text-sm text-center mb-6">Syncing security keys with <span id="connecting-device-name" class="font-semibold text-primary">HealthPatch Pro #442</span>.</p>
+                    
+                    <div class="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden mb-6 shadow-inner">
+                        <div id="progress-bar" class="h-full bg-primary w-0 transition-all ease-out"></div>
+                    </div>
+                    <button onclick="cancelPairing()" class="text-primary text-sm font-bold hover:underline active:scale-95 transition-transform">Cancel</button>
+                </section>
+
+                <!-- الخطوة الثالثة: تم الإقران بنجاح -->
+                <section id="view-3" class="step-transition hidden absolute top-0 w-full flex flex-col items-center">
+                    <div class="mb-6 w-48 h-48 flex items-center justify-center relative">
+                        <div class="absolute inset-4 bg-green-100 opacity-50 rounded-full scale-105 animate-ping" style="animation-duration: 3s;"></div>
+                        <div class="w-32 h-32 bg-green-100 rounded-full flex items-center justify-center z-10 border border-green-200">
+                            <span class="material-symbols-outlined text-green-600 text-6xl font-bold">check</span>
+                        </div>
+                    </div>
+                    <h2 class="text-2xl font-bold text-primary mb-2">Pairing Successful</h2>
+                    <p class="text-on-surface-variant text-sm text-center mb-8 max-w-xs leading-relaxed">Your device is now synced with HealthSync. Vital monitoring will begin immediately.</p>
+                    <button onclick="goToStep(4)" class="w-full py-3 bg-primary text-on-primary rounded-full font-label-sm hover:brightness-110 transition-all shadow-md active:scale-[0.98] flex items-center justify-center gap-2">
+                        Get Started
+                    </button>
+                </section>
+
+                <!-- الخطوة الرابعة: تفاصيل الاتصال والذهاب للـ Dashboard -->
+                <section id="view-4" class="step-transition hidden absolute top-0 w-full flex flex-col items-center">
+                    <div class="w-full bg-white border border-outline-variant rounded-2xl p-6 shadow-md relative flex flex-col items-center">
+                        <!-- Green first-aid bag icon in top-right of the card -->
+                        <div class="absolute top-4 right-4 bg-green-100 text-green-600 p-2 rounded-lg flex items-center justify-center border border-green-200">
+                            <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+                        </div>
+
+                        <!-- Central shield-checkmark circle -->
+                        <div class="mb-6 w-32 h-32 rounded-full bg-primary/10 border-2 border-primary/20 flex items-center justify-center relative">
+                            <div class="w-24 h-24 rounded-full bg-primary flex items-center justify-center shadow-lg">
+                                <span class="material-symbols-outlined text-white text-5xl" style="font-variation-settings: 'FILL' 1;">shield_with_heart</span>
+                            </div>
+                        </div>
+
+                        <h2 class="text-2xl font-bold text-primary mb-2 text-center">Pairing Successful!</h2>
+                        <p class="text-on-surface-variant text-sm text-center mb-6 max-w-xs leading-relaxed">
+                            Your <span id="paired-device-name" class="font-bold text-on-surface">HealthPatch Pro</span> is now connected and syncing data in real-time with your medical profile.
+                        </p>
+
+                        <!-- Stats boxes -->
+                        <div class="w-full space-y-3 mb-6">
+                            <!-- Battery Box -->
+                            <div class="flex items-center justify-between p-4 bg-surface-container-low rounded-xl border border-outline-variant shadow-sm hover:bg-surface-container transition-all">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-green-100 text-green-600 flex items-center justify-center">
+                                        <span class="material-symbols-outlined animate-pulse" style="font-variation-settings: 'FILL' 1;">battery_5_bar</span>
+                                    </div>
+                                    <div class="text-left font-body-md">
+                                        <p class="text-xs text-on-surface-variant font-semibold">BATTERY LIFE</p>
+                                        <p id="battery-value" class="text-base font-bold text-on-surface">98%</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sync Box -->
+                            <div class="flex items-center justify-between p-4 bg-surface-container-low rounded-xl border border-outline-variant shadow-sm hover:bg-surface-container transition-all">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center">
+                                        <span class="material-symbols-outlined animate-spin" style="animation-duration: 6s;">sync</span>
+                                    </div>
+                                    <div class="text-left font-body-md">
+                                        <p class="text-xs text-on-surface-variant font-semibold">SYNC STATUS</p>
+                                        <p id="sync-value" class="text-base font-bold text-on-surface">Live</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <button onclick="goToDashboard()" class="w-full py-4 bg-primary text-on-primary rounded-full font-label-sm hover:brightness-110 transition-all shadow-md active:scale-[0.98] flex items-center justify-center gap-2">
+                            Go to Dashboard <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                        </button>
+
+                        <button onclick="HealthSyncApp.navigate('device-settings.html')" class="mt-4 text-primary text-xs font-semibold hover:underline active:scale-95 transition-transform">
+                            View Device Settings
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pb-safe bg-surface h-16 border-t border-outline-variant dark:border-outline shadow-lg">
+        <a href="feed.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95 duration-200">
+            <span class="material-symbols-outlined">rss_feed</span>
+            <span class="font-label-sm text-label-sm">Feed</span>
+        </a>
+        <a href="dashboard.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95 duration-200">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="font-label-sm text-label-sm">Dashboard</span>
+        </a>
+        <a href="action.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95 duration-200">
+            <span class="material-symbols-outlined">add_circle</span>
+            <span class="font-label-sm text-label-sm">Actions</span>
+        </a>
+        <a href="schedule.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95 duration-200">
+            <span class="material-symbols-outlined">event_note</span>
+            <span class="font-label-sm text-label-sm">Schedule</span>
+        </a>
+        <a href="more.html" class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-4 py-1 transition-all active:scale-95 duration-200">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu</span>
+            <span class="font-label-sm text-label-sm">More</span>
+        </a>
+    </nav>
+
+    <!-- استدعاء ملف السكريبت الخارجي للتنقل -->
+    <script src="scripts/animations.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/more.js"></script>
+</body>
+</html>

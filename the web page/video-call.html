@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HealthSync - Video Consultation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="tailwind-config.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Atkinson+Hyperlegible+Next:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/shared.css">
+<style>
+.video-pulse { animation: vp 2s ease-in-out infinite; }
+@keyframes vp { 0%,100%{box-shadow:0 0 0 0 rgba(0,101,101,.4)} 50%{box-shadow:0 0 0 16px rgba(0,101,101,0)} }
+</style>
+</head>
+<body class="bg-inverse-surface text-inverse-on-surface font-body-md min-h-screen flex flex-col">
+<header class="flex items-center justify-between px-margin_mobile py-4">
+<a href="schedule.html" class="material-symbols-outlined text-inverse-primary hover:bg-white/10 p-2 rounded-full active:scale-95 transition-all">arrow_back</a>
+<div class="text-center"><p class="text-inverse-primary font-bold text-sm">Dr. Elena Vance</p><p class="text-xs opacity-70">Cardiology · Virtual Consultation</p></div>
+<div class="w-10"></div>
+</header>
+<main class="flex-1 flex flex-col items-center justify-center px-margin_mobile relative">
+<div id="waiting" class="text-center space-y-lg">
+<div class="w-28 h-28 rounded-full bg-primary mx-auto flex items-center justify-center video-pulse">
+<span class="material-symbols-outlined text-white text-5xl" style="font-variation-settings:'FILL' 1">videocam</span>
+</div>
+<h2 class="font-title-md text-inverse-on-surface">Connecting to session...</h2>
+<p class="text-sm opacity-70 max-w-xs mx-auto">Please wait while we establish a secure HIPAA-compliant video link with your physician.</p>
+<div class="w-48 h-1 bg-white/20 rounded-full mx-auto overflow-hidden"><div id="connect-bar" class="h-full bg-primary rounded-full transition-all duration-100" style="width:0%"></div></div>
+</div>
+<div id="connected" class="hidden w-full max-w-md space-y-lg text-center">
+<div class="aspect-video bg-black/40 rounded-2xl border border-white/10 flex items-center justify-center relative overflow-hidden">
+<img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxvcUaVm3e1K6QBV97ab3InYA9eWyjEQUi9ycKxbsLFYB-Fmjp4P_y_Y8gNjlP5kVrGC2thI4q_a9-iXmTCvceN9Y97zn1efqR9RTIyEd53b8kgrQ3ztvqCqdDveK1zYclrvPjm_JOUDD6hj3TdRrFzO_Oybeg2vfAvEDMdXyl9Ad5AOhBUO6oU8IJO1y8092fJueDxITCwXFtCp4WoTrZ-CgzDvWeI24qX2yrcsoSy42z8OQ8jynT7b5tvTPkvMgiCCgNm5PWgNXS" class="w-24 h-24 rounded-full border-4 border-primary object-cover" alt="Doctor">
+<p class="absolute bottom-4 left-4 text-xs bg-black/50 px-3 py-1 rounded-full">Dr. Elena Vance</p>
+<div class="absolute bottom-4 right-4 w-20 h-14 bg-surface rounded-lg border-2 border-primary overflow-hidden"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZD-xdl8C3d9x522FaauGt6b9wCNt1PHjrVHheBOgi6a1rXm--P-Lwl7KhiKhu6YtYPv5T1ktk-RTttrE3hIL5JSWDl2JWleyilWQsmI63NtMaS2dUiNHC6kBsUXihXrP-wuJ3w12dRfDDf5jO4xfhosBy-e9yVtKcBYv8iwHfOdmqqR5E4Hm5hhR2VrZEmb_MHJqRFyVHXfLmXHB2GLSH7aCoJ_RCjylruuaxouQLO9kMT5VCpwstMdhEqUM2NhRh3x4jgAI5gVrf" class="w-full h-full object-cover" alt="You"></div>
+</div>
+<p class="text-secondary font-bold text-sm animate-pulse-soft">Session Active · 00:<span id="timer">00</span></p>
+</div>
+</main>
+<footer class="p-margin_mobile flex justify-center gap-4 pb-8">
+<button id="mic-btn" class="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 active:scale-95 transition-all"><span class="material-symbols-outlined">mic</span></button>
+<button id="cam-btn" class="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 active:scale-95 transition-all"><span class="material-symbols-outlined">videocam</span></button>
+<button id="end-btn" class="w-14 h-14 rounded-full bg-error flex items-center justify-center hover:brightness-110 active:scale-95 transition-all"><span class="material-symbols-outlined text-white">call_end</span></button>
+</footer>
+<script src="scripts/animations.js"></script>
+<script src="scripts/app.js"></script>
+<script>
+let progress = 0, seconds = 0, timerInterval;
+const bar = document.getElementById('connect-bar');
+const interval = setInterval(() => {
+  progress += 5; bar.style.width = progress + '%';
+  if (progress >= 100) {
+    clearInterval(interval);
+    document.getElementById('waiting').classList.add('hidden');
+    document.getElementById('connected').classList.remove('hidden');
+    HealthSyncApp.toast('Connected to Dr. Elena Vance');
+    timerInterval = setInterval(() => { seconds++; document.getElementById('timer').textContent = String(seconds).padStart(2,'0'); }, 1000);
+  }
+}, 200);
+['mic-btn','cam-btn'].forEach(id => {
+  document.getElementById(id).addEventListener('click', function() {
+    this.classList.toggle('bg-error/80');
+    HealthSyncApp.toast(id === 'mic-btn' ? 'Microphone toggled' : 'Camera toggled', 'info');
+  });
+});
+document.getElementById('end-btn').addEventListener('click', () => {
+  clearInterval(timerInterval);
+  HealthSyncApp.toast('Call ended. Summary saved to your schedule.');
+  setTimeout(() => HealthSyncApp.navigate('schedule.html'), 1200);
+});
+</script>
+</body>
+</html>

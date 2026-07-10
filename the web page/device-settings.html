@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HealthSync - Device Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="tailwind-config.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Atkinson+Hyperlegible+Next:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/shared.css">
+</head>
+<body class="bg-background font-body-md min-h-screen pb-24">
+<header class="fixed top-0 w-full z-50 flex items-center px-margin_mobile h-16 bg-surface border-b border-outline-variant gap-md">
+<a href="more.html" class="material-symbols-outlined text-primary hover:bg-surface-container-high p-2 rounded-full active:scale-95 transition-all">arrow_back</a>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Device Settings</h1>
+</header>
+<main class="pt-20 px-margin_mobile max-w-lg mx-auto space-y-lg">
+<section class="glass-card rounded-2xl p-lg border-t-4 border-primary flex items-center gap-md">
+<div class="w-16 h-16 rounded-2xl bg-primary-container/20 flex items-center justify-center"><span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings:'FILL' 1">devices</span></div>
+<div><h2 class="font-title-md">HealthPatch Pro</h2><p class="text-sm text-on-surface-variant">PATCH-C6-8821 · Connected</p><span class="inline-block mt-1 bg-secondary-container/30 text-secondary text-[10px] font-bold px-2 py-0.5 rounded uppercase">Live Sync</span></div>
+</section>
+<div class="space-y-sm">
+<div class="flex items-center justify-between p-md bg-white border border-outline-variant rounded-xl">
+<div class="flex items-center gap-md"><span class="material-symbols-outlined text-primary">sync</span><div><p class="font-bold text-sm">Auto Sync</p><p class="text-xs text-on-surface-variant">Sync vitals every 30 seconds</p></div></div>
+<label class="relative inline-flex cursor-pointer"><input type="checkbox" class="sr-only peer" checked><div class="w-11 h-6 bg-outline-variant/40 rounded-full peer peer-checked:bg-secondary peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all"></div></label>
+</div>
+<div class="flex items-center justify-between p-md bg-white border border-outline-variant rounded-xl">
+<div class="flex items-center gap-md"><span class="material-symbols-outlined text-primary">notifications_active</span><div><p class="font-bold text-sm">Critical Alerts</p><p class="text-xs text-on-surface-variant">Notify when vitals are abnormal</p></div></div>
+<label class="relative inline-flex cursor-pointer"><input type="checkbox" class="sr-only peer" checked><div class="w-11 h-6 bg-outline-variant/40 rounded-full peer peer-checked:bg-secondary peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all"></div></label>
+</div>
+<div class="flex items-center justify-between p-md bg-white border border-outline-variant rounded-xl">
+<div class="flex items-center gap-md"><span class="material-symbols-outlined text-primary">thermostat</span><div><p class="font-bold text-sm">Temperature Unit</p><p class="text-xs text-on-surface-variant">Display in Celsius (°C)</p></div></div>
+<span class="text-primary font-bold text-sm">°C</span>
+</div>
+<div class="flex items-center justify-between p-md bg-white border border-outline-variant rounded-xl cursor-pointer hover:bg-surface-container transition-all" onclick="HealthSyncApp.navigate('more.html?wizard=1')">
+<div class="flex items-center gap-md"><span class="material-symbols-outlined text-primary">bluetooth</span><div><p class="font-bold text-sm">Re-pair Device</p><p class="text-xs text-on-surface-variant">Open pairing wizard</p></div></div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</div>
+<button id="unpair-btn" class="w-full py-3 border-2 border-error text-error rounded-full font-bold hover:bg-error-container/20 active:scale-95 transition-all">Unpair Device</button>
+</main>
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pb-safe bg-surface h-16 border-t border-outline-variant shadow-lg">
+<a href="feed.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">rss_feed</span><span class="font-label-sm text-label-sm">Feed</span></a>
+<a href="dashboard.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">dashboard</span><span class="font-label-sm text-label-sm">Dashboard</span></a>
+<a href="action.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">add_circle</span><span class="font-label-sm text-label-sm">Actions</span></a>
+<a href="schedule.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">event_note</span><span class="font-label-sm text-label-sm">Schedule</span></a>
+<a href="more.html" class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-4 py-1 transition-all active:scale-95"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">menu</span><span class="font-label-sm text-label-sm">More</span></a>
+</nav>
+<script src="scripts/animations.js"></script>
+<script src="scripts/app.js"></script>
+<script>
+document.getElementById('unpair-btn').addEventListener('click', () => {
+  if (confirm('Unpair HealthPatch Pro from your account?')) {
+    HealthSyncApp.toast('Device unpaired successfully');
+    setTimeout(() => HealthSyncApp.navigate('more.html'), 1200);
+  }
+});
+</script>
+</body>
+</html>

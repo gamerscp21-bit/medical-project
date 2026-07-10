@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>HealthSync - My Profile</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Atkinson+Hyperlegible+Next:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <!-- Shared Tailwind Config -->
+    <script src="tailwind-config.js"></script>
+    <!-- Shared CSS -->
+    <link rel="stylesheet" href="styles/shared.css">
+
+    <style>
+        body {
+            background-color: #f6faf9;
+            color: #181c1c;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Avatar upload hover effect */
+        .avatar-wrapper:hover .avatar-overlay {
+            opacity: 1;
+        }
+
+        /* Input field focus style */
+        .profile-input {
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .profile-input:focus {
+            outline: none;
+            border-color: #006565;
+            box-shadow: 0 0 0 3px rgba(0, 101, 101, 0.12);
+        }
+        .profile-input:disabled {
+            background-color: #f0f4f3;
+            color: #6e7979;
+            cursor: not-allowed;
+        }
+
+        /* Animated save button */
+        .save-btn {
+            transition: all 0.2s ease;
+        }
+        .save-btn:hover {
+            filter: brightness(1.1);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(0, 101, 101, 0.35);
+        }
+        .save-btn:active {
+            transform: translateY(0px) scale(0.97);
+        }
+
+        /* Section card animation */
+        .section-card {
+            transition: box-shadow 0.2s ease;
+        }
+        .section-card:hover {
+            box-shadow: 0 4px 20px rgba(0, 101, 101, 0.08);
+        }
+
+        /* Badge pill */
+        .badge-edit {
+            transition: all 0.15s;
+        }
+        .badge-edit:hover {
+            transform: scale(1.05);
+        }
+
+        /* Toast notification */
+        #toast {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Pulse ring for avatar */
+        @keyframes ring-pulse {
+            0%, 100% { box-shadow: 0 0 0 0px rgba(0,101,101,0.3); }
+            50% { box-shadow: 0 0 0 8px rgba(0,101,101,0); }
+        }
+        .avatar-ring {
+            animation: ring-pulse 2.5s ease-in-out infinite;
+        }
+
+        /* Section label */
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #6e7979;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md antialiased pb-24 min-h-screen">
+
+    <!-- ==================== Toast Notification ==================== -->
+    <div id="toast" class="fixed top-20 left-1/2 -translate-x-1/2 z-[200] bg-secondary text-white px-6 py-3 rounded-full shadow-xl flex items-center gap-2 opacity-0 pointer-events-none scale-90">
+        <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+        <span class="font-semibold text-sm">Profile saved successfully!</span>
+    </div>
+
+    <!-- ==================== Top App Bar ==================== -->
+    <header class="fixed top-0 w-full z-50 flex items-center justify-between px-margin_mobile md:px-lg bg-surface border-b border-outline-variant h-16 shadow-sm">
+        <div class="flex items-center gap-md">
+            <a href="more.html" class="material-symbols-outlined text-primary hover:bg-surface-container-high transition-colors p-2 rounded-full active:scale-95 duration-150 cursor-pointer">arrow_back</a>
+            <h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">My Profile</h1>
+        </div>
+        <div class="flex items-center gap-2">
+            <button id="edit-toggle-btn" onclick="toggleEditMode()" class="flex items-center gap-1 px-4 py-2 rounded-full text-sm font-semibold transition-all active:scale-95 border border-primary text-primary hover:bg-primary/8">
+                <span class="material-symbols-outlined text-[18px]" id="edit-icon">edit</span>
+                <span id="edit-label">Edit</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ==================== Main Content ==================== -->
+    <main class="pt-20 px-margin_mobile max-w-lg mx-auto space-y-5 pb-6">
+
+        <!-- ── Profile Header Card ── -->
+        <section class="section-card bg-white rounded-2xl border border-outline-variant overflow-hidden mt-2">
+            <!-- Cover gradient -->
+            <div class="h-28 bg-gradient-to-br from-primary via-[#008080] to-secondary-container relative">
+                <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 20% 80%, #fff 0%, transparent 50%), radial-gradient(circle at 80% 20%, #90f691 0%, transparent 40%);"></div>
+            </div>
+
+            <!-- Avatar & Identity -->
+            <div class="px-lg pb-lg relative">
+                <div class="flex justify-between items-end -mt-12 mb-4">
+                    <!-- Avatar -->
+                    <div class="avatar-wrapper relative cursor-pointer" onclick="document.getElementById('avatar-input').click()">
+                        <img id="profile-avatar" 
+                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZD-xdl8C3d9x522FaauGt6b9wCNt1PHjrVHheBOgi6a1rXm--P-Lwl7KhiKhu6YtYPv5T1ktk-RTttrE3hIL5JSWDl2JWleyilWQsmI63NtMaS2dUiNHC6kBsUXihXrP-wuJ3w12dRfDDf5jO4xfhosBy-e9yVtKcBYv8iwHfOdmqqR5E4Hm5hhR2VrZEmb_MHJqRFyVHXfLmXHB2GLSH7aCoJ_RCjylruuaxouQLO9kMT5VCpwstMdhEqUM2NhRh3x4jgAI5gVrf" 
+                             class="avatar-ring w-24 h-24 rounded-full border-4 border-white shadow-md object-cover"
+                             alt="Profile Photo">
+                        <!-- Upload overlay -->
+                        <div class="avatar-overlay absolute inset-0 rounded-full bg-black/40 flex flex-col items-center justify-center opacity-0 transition-opacity duration-200 border-4 border-white">
+                            <span class="material-symbols-outlined text-white text-2xl" style="font-variation-settings: 'FILL' 1;">photo_camera</span>
+                            <span class="text-white text-[10px] font-bold mt-0.5">Change</span>
+                        </div>
+                        <input type="file" id="avatar-input" accept="image/*" class="hidden" onchange="handleAvatarChange(event)">
+                        <!-- Online badge -->
+                        <div class="absolute bottom-1 right-1 bg-secondary w-5 h-5 rounded-full border-2 border-white flex items-center justify-center">
+                            <span class="material-symbols-outlined text-[10px] text-white" style="font-variation-settings: 'FILL' 1;">verified</span>
+                        </div>
+                    </div>
+
+                    <!-- Member Badge -->
+                    <div class="mb-1 flex flex-col items-end gap-1">
+                        <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-[11px] font-bold">Premium Member</span>
+                        <span class="text-on-surface-variant text-[11px] font-medium">Member since Jan 2023</span>
+                    </div>
+                </div>
+
+                <!-- Name & ID -->
+                <div>
+                    <h2 id="display-name" class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Alex Johnson</h2>
+                    <p class="text-on-surface-variant text-sm mt-0.5">Patient ID: <strong class="text-primary">#8821</strong></p>
+                </div>
+
+                <!-- Health Badges -->
+                <div class="flex flex-wrap gap-2 mt-3">
+                    <span id="badge-blood" class="badge-edit bg-primary/10 text-primary px-3 py-1 rounded-full text-label-sm font-label-sm">Blood Type: O+</span>
+                    <span id="badge-status" class="badge-edit bg-secondary/10 text-secondary px-3 py-1 rounded-full text-label-sm font-label-sm">Healthy Status</span>
+                    <span class="badge-edit bg-tertiary/10 text-tertiary px-3 py-1 rounded-full text-label-sm font-label-sm">Age: 34</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Personal Information ── -->
+        <section class="section-card bg-white rounded-2xl border border-outline-variant p-lg">
+            <div class="flex items-center gap-2 mb-4">
+                <span class="material-symbols-outlined text-primary text-[22px]" style="font-variation-settings: 'FILL' 1;">person</span>
+                <h3 class="font-title-md text-title-md text-on-surface">Personal Information</h3>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Full Name -->
+                <div class="sm:col-span-2">
+                    <label class="section-label block mb-1.5">Full Name</label>
+                    <input id="field-name" type="text" value="Alex Johnson" disabled
+                        class="profile-input w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface-container-low text-on-surface text-sm font-medium">
+                </div>
+                <!-- Email -->
+                <div class="sm:col-span-2">
+                    <label class="section-label block mb-1.5">Email Address</label>
+                    <input id="field-email" type="email" value="alex.johnson@healthsync.com" disabled
+                        class="profile-input w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface-container-low text-on-surface text-sm font-medium">
+                </div>
+                <!-- Phone -->
+                <div>
+                    <label class="section-label block mb-1.5">Phone Number</label>
+                    <input id="field-phone" type="tel" value="+20 100 882 1000" disabled
+                        class="profile-input w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface-container-low text-on-surface text-sm font-medium">
+                </div>
+                <!-- Date of Birth -->
+                <div>
+                    <label class="section-label block mb-1.5">Date of Birth</label>
+                    <input id="field-dob" type="date" value="1990-06-15" disabled
+                        class="profile-input w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface-container-low text-on-surface text-sm font-medium">
+                </div>
+                <!-- Gender -->
+                <div>
+                    <label class="section-label block mb-1.5">Gender</label>
+                    <select id="field-gender" disabled
+                        class="profile-input w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface-container-low text-on-surface text-sm font-medium appearance-none">
+                        <option value="male" selected>Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <!-- National ID -->
+                <div>
+                    <label class="section-label block mb-1.5">National ID</label>
+                    <input id="field-nid" type="text" value="29006154321001" disabled
+                        class="profile-input w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface-container-low text-on-surface text-sm font-medium">
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Medical Information ── -->
+        <section class="section-card bg-white rounded-2xl border border-outline-variant p-lg">
+            <div class="flex items-center gap-2 mb-4">
+                <span class="material-symbols-outlined text-error text-[22px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+                <h3 class="font-title-md text-title-md text-on-surface">Medical Information</h3>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Blood Type -->
+                <div>
+                    <label class="section-label block mb-1.5">Blood Type</label>
+                    <select id="field-blood" disabled
+                        class="profile-input w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface-container-low text-on-surface text-sm font-medium appearance-none">
+                        <option>A+</option><option>A-</option>
+                        <option>B+</option><option>B-</option>
+                        <option>AB+</option><option>AB-</option>
+                        <option value="O+" selected>O+</option><option>O-</option>
+                    </select>
+                </div>
+                <!-- Weight -->
+                <div>
+                    <label class="section-label block mb-1.5">Weight (kg)</label>
+                    <input id="field-weight" type="number" value="75" disabled
+                        class="profile-input w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface-container-low text-on-surface text-sm font-medium">
+                </div>
+                <!-- Height -->
+                <div>
+                    <label class="section-label block mb-1.5">Height (cm)</label>
+                    <input id="field-height" type="number" value="178" disabled
+                        class="profile-input w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface-container-low text-on-surface text-sm font-medium">
+                </div>
+                <!-- Health Status -->
+                <div>
+                    <label class="section-label block mb-1.5">Health Status</label>
+                    <select id="field-status" disabled
+                        class="profile-input w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface-container-low text-on-surface text-sm font-medium appearance-none">
+                        <option value="healthy" selected>Healthy</option>
+                        <option value="monitoring">Under Monitoring</option>
+                        <option value="treatment">In Treatment</option>
+                        <option value="critical">Critical</option>
+                    </select>
+                </div>
+                <!-- Allergies -->
+                <div class="sm:col-span-2">
+                    <label class="section-label block mb-1.5">Known Allergies</label>
+                    <input id="field-allergies" type="text" value="Penicillin, Pollen" disabled
+                        class="profile-input w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface-container-low text-on-surface text-sm font-medium">
+                </div>
+                <!-- Chronic Conditions -->
+                <div class="sm:col-span-2">
+                    <label class="section-label block mb-1.5">Chronic Conditions</label>
+                    <textarea id="field-conditions" rows="2" disabled
+                        class="profile-input w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface-container-low text-on-surface text-sm font-medium resize-none">None reported</textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Contact & Emergency ── -->
+        <section class="section-card bg-white rounded-2xl border border-outline-variant p-lg">
+            <div class="flex items-center gap-2 mb-4">
+                <span class="material-symbols-outlined text-tertiary text-[22px]" style="font-variation-settings: 'FILL' 1;">emergency_share</span>
+                <h3 class="font-title-md text-title-md text-on-surface">Emergency Contact</h3>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Emergency Name -->
+                <div>
+                    <label class="section-label block mb-1.5">Contact Name</label>
+                    <input id="field-emer-name" type="text" value="Sarah Johnson" disabled
+                        class="profile-input w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface-container-low text-on-surface text-sm font-medium">
+                </div>
+                <!-- Emergency Phone -->
+                <div>
+                    <label class="section-label block mb-1.5">Contact Phone</label>
+                    <input id="field-emer-phone" type="tel" value="+20 100 123 4567" disabled
+                        class="profile-input w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface-container-low text-on-surface text-sm font-medium">
+                </div>
+                <!-- Relation -->
+                <div class="sm:col-span-2">
+                    <label class="section-label block mb-1.5">Relationship</label>
+                    <select id="field-relation" disabled
+                        class="profile-input w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface-container-low text-on-surface text-sm font-medium appearance-none">
+                        <option value="spouse" selected>Spouse</option>
+                        <option value="parent">Parent</option>
+                        <option value="sibling">Sibling</option>
+                        <option value="friend">Friend</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Address ── -->
+        <section class="section-card bg-white rounded-2xl border border-outline-variant p-lg">
+            <div class="flex items-center gap-2 mb-4">
+                <span class="material-symbols-outlined text-primary text-[22px]" style="font-variation-settings: 'FILL' 1;">location_on</span>
+                <h3 class="font-title-md text-title-md text-on-surface">Address</h3>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Street -->
+                <div class="sm:col-span-2">
+                    <label class="section-label block mb-1.5">Street Address</label>
+                    <input id="field-street" type="text" value="123 El-Nasr Street, Apt 4B" disabled
+                        class="profile-input w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface-container-low text-on-surface text-sm font-medium">
+                </div>
+                <!-- City -->
+                <div>
+                    <label class="section-label block mb-1.5">City</label>
+                    <input id="field-city" type="text" value="Cairo" disabled
+                        class="profile-input w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface-container-low text-on-surface text-sm font-medium">
+                </div>
+                <!-- Country -->
+                <div>
+                    <label class="section-label block mb-1.5">Country</label>
+                    <input id="field-country" type="text" value="Egypt" disabled
+                        class="profile-input w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface-container-low text-on-surface text-sm font-medium">
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Save Button (shown in edit mode) ── -->
+        <div id="save-section" class="hidden flex flex-col gap-3 pb-4">
+            <button onclick="saveProfile()" class="save-btn w-full py-4 bg-primary text-on-primary rounded-full font-bold text-sm flex items-center justify-center gap-2 shadow-md">
+                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">save</span>
+                Save Changes
+            </button>
+            <button onclick="cancelEdit()" class="w-full py-3 border border-outline-variant text-on-surface-variant rounded-full font-semibold text-sm hover:bg-surface-container transition-colors active:scale-95">
+                Cancel
+            </button>
+        </div>
+
+        <!-- ── Danger Zone ── -->
+        <section class="section-card bg-white rounded-2xl border border-error/20 p-lg">
+            <div class="flex items-center gap-2 mb-3">
+                <span class="material-symbols-outlined text-error text-[20px]">warning</span>
+                <h3 class="font-semibold text-error text-sm">Account Actions</h3>
+            </div>
+            <div class="space-y-2">
+                <button onclick="HealthSyncApp.navigate('change-password.html')" class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-error-container/10 transition-colors group">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-error text-[20px]">lock_reset</span>
+                        <span class="text-sm font-medium text-on-surface">Change Password</span>
+                    </div>
+                    <span class="material-symbols-outlined text-outline group-hover:text-error transition-colors text-[18px]">chevron_right</span>
+                </button>
+                <button class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-error-container/10 transition-colors group">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-error text-[20px]">logout</span>
+                        <span class="text-sm font-medium text-on-surface">Logout from HealthSync</span>
+                    </div>
+                    <span class="material-symbols-outlined text-outline group-hover:text-error transition-colors text-[18px]">chevron_right</span>
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==================== Bottom Navigation ==================== -->
+    <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pb-safe bg-surface h-16 border-t border-outline-variant shadow-lg">
+        <a href="feed.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90 duration-200">
+            <span class="material-symbols-outlined">rss_feed</span>
+            <span class="font-label-sm text-label-sm">Feed</span>
+        </a>
+        <a href="dashboard.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90 duration-200">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="font-label-sm text-label-sm">Dashboard</span>
+        </a>
+        <a href="action.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90 duration-200">
+            <span class="material-symbols-outlined">add_circle</span>
+            <span class="font-label-sm text-label-sm">Actions</span>
+        </a>
+        <a href="schedule.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-90 duration-200">
+            <span class="material-symbols-outlined">event_note</span>
+            <span class="font-label-sm text-label-sm">Schedule</span>
+        </a>
+        <a href="more.html" class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-4 py-1 transition-all active:scale-90 duration-200">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu</span>
+            <span class="font-label-sm text-label-sm">More</span>
+        </a>
+    </nav>
+
+    <script src="scripts/animations.js"></script>
+    <script src="scripts/app.js"></script>
+    <script>
+        // ── Editable fields list ──
+        const editableFields = [
+            'field-name', 'field-email', 'field-phone', 'field-dob',
+            'field-gender', 'field-nid', 'field-blood', 'field-weight',
+            'field-height', 'field-status', 'field-allergies', 'field-conditions',
+            'field-emer-name', 'field-emer-phone', 'field-relation',
+            'field-street', 'field-city', 'field-country'
+        ];
+
+        let isEditing = false;
+        let originalValues = {};
+
+        /**
+         * Toggle between view mode and edit mode
+         */
+        function toggleEditMode() {
+            isEditing = !isEditing;
+            const btn = document.getElementById('edit-toggle-btn');
+            const icon = document.getElementById('edit-icon');
+            const label = document.getElementById('edit-label');
+            const saveSection = document.getElementById('save-section');
+
+            if (isEditing) {
+                // Save original values for cancel
+                editableFields.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) originalValues[id] = el.value;
+                });
+
+                // Enable fields
+                editableFields.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        el.disabled = false;
+                        el.classList.remove('bg-surface-container-low');
+                        el.classList.add('bg-white', 'border-outline');
+                    }
+                });
+
+                // Update button appearance
+                btn.classList.remove('border-primary', 'text-primary', 'hover:bg-primary/8');
+                btn.classList.add('bg-primary', 'text-white', 'border-primary');
+                icon.textContent = 'edit_off';
+                label.textContent = 'Editing...';
+                saveSection.classList.remove('hidden');
+                saveSection.classList.add('flex');
+
+                // Smooth scroll indicator
+                btn.style.animation = 'none';
+            } else {
+                cancelEdit();
+            }
+        }
+
+        /**
+         * Save the profile data
+         */
+        function saveProfile() {
+            // Update display name in header
+            const nameField = document.getElementById('field-name');
+            if (nameField) {
+                document.getElementById('display-name').textContent = nameField.value;
+            }
+
+            // Update blood type badge
+            const bloodField = document.getElementById('field-blood');
+            if (bloodField) {
+                document.getElementById('badge-blood').textContent = 'Blood Type: ' + bloodField.value;
+            }
+
+            // Update status badge
+            const statusField = document.getElementById('field-status');
+            if (statusField) {
+                const statusMap = {
+                    healthy: 'Healthy Status',
+                    monitoring: 'Under Monitoring',
+                    treatment: 'In Treatment',
+                    critical: 'Critical'
+                };
+                const badge = document.getElementById('badge-status');
+                badge.textContent = statusMap[statusField.value] || statusField.value;
+                // Change badge color based on status
+                badge.className = badge.className.replace(/bg-\w+-\/10 text-\w+/, '');
+                if (statusField.value === 'healthy') {
+                    badge.className = 'badge-edit bg-secondary/10 text-secondary px-3 py-1 rounded-full text-label-sm font-label-sm';
+                } else if (statusField.value === 'critical') {
+                    badge.className = 'badge-edit bg-error/10 text-error px-3 py-1 rounded-full text-label-sm font-label-sm';
+                } else {
+                    badge.className = 'badge-edit bg-tertiary/10 text-tertiary px-3 py-1 rounded-full text-label-sm font-label-sm';
+                }
+            }
+
+            // Reset to view mode
+            setViewMode();
+            showToast();
+        }
+
+        /**
+         * Cancel editing and restore original values
+         */
+        function cancelEdit() {
+            // Restore original values
+            editableFields.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && originalValues[id] !== undefined) {
+                    el.value = originalValues[id];
+                }
+            });
+            setViewMode();
+        }
+
+        /**
+         * Set all fields back to view (disabled) mode
+         */
+        function setViewMode() {
+            isEditing = false;
+            const btn = document.getElementById('edit-toggle-btn');
+            const icon = document.getElementById('edit-icon');
+            const label = document.getElementById('edit-label');
+            const saveSection = document.getElementById('save-section');
+
+            editableFields.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.disabled = true;
+                    el.classList.add('bg-surface-container-low');
+                    el.classList.remove('bg-white', 'border-outline');
+                }
+            });
+
+            btn.classList.add('border-primary', 'text-primary', 'hover:bg-primary/8');
+            btn.classList.remove('bg-primary', 'text-white');
+            icon.textContent = 'edit';
+            label.textContent = 'Edit';
+            saveSection.classList.add('hidden');
+            saveSection.classList.remove('flex');
+        }
+
+        /**
+         * Handle avatar image change
+         */
+        function handleAvatarChange(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                document.getElementById('profile-avatar').src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        /**
+         * Show success toast notification
+         */
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.remove('opacity-0', 'scale-90', 'pointer-events-none');
+            toast.classList.add('opacity-100', 'scale-100');
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'scale-100');
+                toast.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

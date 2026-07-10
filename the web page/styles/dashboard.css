@@ -1,0 +1,97 @@
+/* ============================================
+   HealthSync — Dashboard Page Styles
+   ============================================ */
+
+.vitals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  position: relative;
+}
+
+/* Skeleton overlay sits on top during loading */
+#skeleton-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Hide real content underneath while skeleton is active */
+.bento-grid.is-loading .vital-card-real,
+.bento-grid.is-loading .chart-real,
+.bento-grid.is-loading .reminders-real {
+  visibility: hidden;
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ============================================
+   Skeleton Shimmer Loading
+   ============================================ */
+
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+
+.skeleton-card {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(226, 232, 240, 0.6);
+}
+
+.skeleton-block {
+  background: linear-gradient(
+    90deg,
+    #e5e9e8 25%,
+    #eff2f1 37%,
+    #e5e9e8 63%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+  border-radius: 4px;
+}
+
+/* Actual content cards: fade in after skeleton */
+.vital-card-real,
+.chart-real,
+.reminders-real {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.vital-card-real.visible,
+.chart-real.visible,
+.reminders-real.visible {
+  opacity: 1;
+}
+
+/* Progress bar fill animation */
+.vital-card-real .h-full.rounded-full {
+  transition: width 1s var(--anim-ease-out, ease);
+}

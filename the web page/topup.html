@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HealthSync - Top Up Wallet</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="tailwind-config.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Atkinson+Hyperlegible+Next:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/shared.css">
+</head>
+<body class="bg-background font-body-md min-h-screen pb-24">
+<header class="fixed top-0 w-full z-50 flex items-center px-margin_mobile h-16 bg-surface border-b border-outline-variant gap-md">
+<a href="mywallet.html" class="material-symbols-outlined text-primary hover:bg-surface-container-high p-2 rounded-full active:scale-95 transition-all">arrow_back</a>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Top Up Wallet</h1>
+</header>
+<main class="pt-20 px-margin_mobile max-w-lg mx-auto space-y-lg">
+<section class="text-center"><p class="text-on-surface-variant text-sm">Current Balance</p><p class="font-headline-lg-mobile text-primary font-bold">1,240.00 <span class="text-title-md">EGP</span></p></section>
+<div class="grid grid-cols-3 gap-3">
+<button class="topup-amt py-3 rounded-xl border-2 border-outline-variant font-bold hover:border-primary active:scale-95 transition-all" data-amt="100">100</button>
+<button class="topup-amt py-3 rounded-xl border-2 border-primary bg-primary-container/20 font-bold active:scale-95 transition-all" data-amt="500">500</button>
+<button class="topup-amt py-3 rounded-xl border-2 border-outline-variant font-bold hover:border-primary active:scale-95 transition-all" data-amt="1000">1,000</button>
+</div>
+<input id="topup-input" type="number" value="500" class="w-full px-4 py-4 rounded-xl border border-outline-variant bg-surface text-center text-2xl font-bold text-primary focus:border-primary outline-none">
+<p class="text-label-sm text-on-surface-variant text-center">Payment Method</p>
+<div class="space-y-2">
+<label class="flex items-center gap-md p-md border-2 border-primary bg-primary-container/10 rounded-xl cursor-pointer"><input type="radio" name="pay" checked class="accent-primary"><span class="material-symbols-outlined text-primary">smartphone</span><span class="font-bold text-sm">Vodafone Cash</span></label>
+<label class="flex items-center gap-md p-md border border-outline-variant rounded-xl cursor-pointer hover:border-primary transition-all"><input type="radio" name="pay" class="accent-primary"><span class="material-symbols-outlined text-primary">credit_card</span><span class="font-bold text-sm">Visa •••• 4291</span></label>
+</div>
+<button id="confirm-topup" class="w-full py-4 bg-primary text-on-primary rounded-full font-bold shadow-md hover:brightness-110 active:scale-[0.98] transition-all">Confirm Top Up — 500 EGP</button>
+</main>
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pb-safe bg-surface h-16 border-t border-outline-variant shadow-lg">
+<a href="feed.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">rss_feed</span><span class="font-label-sm text-label-sm">Feed</span></a>
+<a href="dashboard.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">dashboard</span><span class="font-label-sm text-label-sm">Dashboard</span></a>
+<a href="action.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">add_circle</span><span class="font-label-sm text-label-sm">Actions</span></a>
+<a href="schedule.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">event_note</span><span class="font-label-sm text-label-sm">Schedule</span></a>
+<a href="more.html" class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-4 py-1 transition-all active:scale-95"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">menu</span><span class="font-label-sm text-label-sm">More</span></a>
+</nav>
+<script src="scripts/animations.js"></script>
+<script src="scripts/app.js"></script>
+<script>
+let amt = 500;
+document.querySelectorAll('.topup-amt').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.topup-amt').forEach(x => { x.classList.remove('border-primary','bg-primary-container/20'); x.classList.add('border-outline-variant'); });
+  b.classList.add('border-primary','bg-primary-container/20'); b.classList.remove('border-outline-variant');
+  amt = +b.dataset.amt; document.getElementById('topup-input').value = amt;
+  document.getElementById('confirm-topup').textContent = `Confirm Top Up — ${amt} EGP`;
+}));
+document.getElementById('topup-input').addEventListener('input', e => { amt = +e.target.value||0; document.getElementById('confirm-topup').textContent = `Confirm Top Up — ${amt} EGP`; });
+document.getElementById('confirm-topup').addEventListener('click', () => {
+  if (amt < 1) return HealthSyncApp.toast('Enter a valid amount', 'error');
+  HealthSyncApp.toast(`+${amt} EGP added to your wallet!`);
+  setTimeout(() => HealthSyncApp.navigate('mywallet.html'), 1400);
+});
+</script>
+</body>
+</html>

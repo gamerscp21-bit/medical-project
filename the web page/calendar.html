@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HealthSync - Calendar</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="tailwind-config.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Atkinson+Hyperlegible+Next:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/shared.css">
+<link rel="stylesheet" href="styles/schedule.css">
+</head>
+<body class="bg-surface font-body-md min-h-screen pb-24">
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-margin_mobile h-16 bg-surface border-b border-outline-variant">
+<a href="schedule.html" class="material-symbols-outlined text-primary hover:bg-surface-container-high p-2 rounded-full active:scale-95 transition-all">arrow_back</a>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">October 2024</h1>
+<button id="today-btn" class="text-primary text-label-sm font-bold">Today</button>
+</header>
+<main class="pt-20 px-margin_mobile max-w-lg mx-auto">
+<div class="grid grid-cols-7 gap-1 text-center text-label-sm text-on-surface-variant mb-2">
+<span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+</div>
+<div id="cal-grid" class="grid grid-cols-7 gap-1"></div>
+<section class="mt-lg space-y-3" id="day-events">
+<h3 class="font-title-md text-title-md">Events on <span id="selected-date">Oct 15</span></h3>
+<div class="p-md bg-surface-container-low rounded-xl border border-outline-variant flex items-center gap-md cursor-pointer hover:border-primary transition-all" onclick="HealthSyncApp.navigate('video-call.html')">
+<span class="material-symbols-outlined text-primary">videocam</span>
+<div><p class="font-bold text-sm">Dr. Elena Vance — Virtual</p><p class="text-xs text-on-surface-variant">10:30 AM · Cardiology</p></div>
+</div>
+<div class="p-md bg-surface-container-low rounded-xl border border-outline-variant flex items-center gap-md">
+<span class="material-symbols-outlined text-primary">biotech</span>
+<div><p class="font-bold text-sm">St. Mary's Lab — Blood Work</p><p class="text-xs text-on-surface-variant">2:15 PM · In-person</p></div>
+</div>
+</section>
+</main>
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pb-safe bg-surface h-16 border-t border-outline-variant shadow-lg">
+<a href="feed.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">rss_feed</span><span class="font-label-sm text-label-sm">Feed</span></a>
+<a href="dashboard.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">dashboard</span><span class="font-label-sm text-label-sm">Dashboard</span></a>
+<a href="action.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">add_circle</span><span class="font-label-sm text-label-sm">Actions</span></a>
+<a href="schedule.html" class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-4 py-1 transition-all active:scale-95"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">event_note</span><span class="font-label-sm text-label-sm">Schedule</span></a>
+<a href="more.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95"><span class="material-symbols-outlined">menu</span><span class="font-label-sm text-label-sm">More</span></a>
+</nav>
+<script src="scripts/animations.js"></script>
+<script src="scripts/app.js"></script>
+<script>
+const grid = document.getElementById('cal-grid');
+const eventDays = [15, 17, 22];
+let selected = 15;
+for (let i = 0; i < 2; i++) grid.innerHTML += '<div></div>';
+for (let d = 1; d <= 31; d++) {
+  const btn = document.createElement('button');
+  btn.className = 'cal-day aspect-square rounded-xl flex items-center justify-center text-sm font-medium transition-all active:scale-95 ' +
+    (d === 15 ? 'bg-primary text-on-primary shadow-md' : 'hover:bg-surface-container text-on-surface');
+  if (eventDays.includes(d) && d !== 15) btn.innerHTML = d + '<span class="absolute bottom-1 w-1 h-1 bg-primary rounded-full"></span>';
+  else btn.textContent = d;
+  btn.style.position = 'relative';
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.cal-day').forEach(b => { b.className = 'cal-day aspect-square rounded-xl flex items-center justify-center text-sm font-medium transition-all active:scale-95 hover:bg-surface-container text-on-surface'; b.style.position='relative'; });
+    btn.className = 'cal-day aspect-square rounded-xl flex items-center justify-center text-sm font-medium transition-all active:scale-95 bg-primary text-on-primary shadow-md';
+    btn.style.position = 'relative';
+    selected = d;
+    document.getElementById('selected-date').textContent = 'Oct ' + d;
+    document.getElementById('day-events').classList.add('hs-step-view');
+    setTimeout(() => document.getElementById('day-events').classList.remove('hs-step-view'), 400);
+  });
+  grid.appendChild(btn);
+}
+document.getElementById('today-btn').addEventListener('click', () => {
+  document.querySelectorAll('.cal-day')[14]?.click();
+  HealthSyncApp.toast('Jumped to today', 'info');
+});
+</script>
+</body>
+</html>

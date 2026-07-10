@@ -1,0 +1,191 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>HealthSync Wallet</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Atkinson+Hyperlegible+Next:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="tailwind-config.js"></script>
+<link rel="stylesheet" href="styles/shared.css">
+<link rel="stylesheet" href="styles/mywallet.css">
+</head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-margin_mobile md:px-lg h-16 bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-4">
+<a href="more.html" class="material-symbols-outlined text-primary hover:bg-surface-container-high p-2 rounded-full active:scale-95 transition-all">arrow_back</a>
+<h1 class="font-title-md text-title-md text-primary">Wallet</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-surface-container-high transition-colors active:scale-95 duration-150 rounded-full">
+<span class="material-symbols-outlined text-primary">notifications</span>
+</button>
+</div>
+</header>
+<main class="pt-20 px-margin_mobile max-w-lg mx-auto">
+<!-- Balance Card -->
+<section class="relative overflow-hidden bg-primary-container rounded-xl p-6 mb-8 text-on-primary-container shadow-sm border border-primary">
+<!-- Subtle abstract background effect -->
+<div class="absolute -right-12 -top-12 w-48 h-48 bg-white/10 rounded-full blur-3xl"></div>
+<div class="relative z-10">
+<p class="font-label-sm text-label-sm opacity-80 mb-1">Current Balance</p>
+<div class="flex items-baseline gap-2 mb-6">
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-bold">1,240.00</span>
+<span class="font-title-md text-title-md opacity-90">EGP</span>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-surface-container-lowest text-primary font-bold py-3 rounded-xl flex items-center justify-center gap-2 active:scale-95 transition-all shadow-md">
+<span class="material-symbols-outlined">add_circle</span>
+                        Top Up
+                    </button>
+</div>
+</div>
+</section>
+<!-- Quick Actions -->
+<section class="grid grid-cols-3 gap-4 mb-10">
+<button class="flex flex-col items-center gap-2 group">
+<div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-all">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Top Up</span>
+</button>
+<button class="flex flex-col items-center gap-2 group">
+<div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-all">
+<span class="material-symbols-outlined">outbox</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Withdraw</span>
+</button>
+<button class="flex flex-col items-center gap-2 group">
+<div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-on-primary-container transition-all">
+<span class="material-symbols-outlined">send_money</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Send Credit</span>
+</button>
+</section>
+<!-- Payment Methods -->
+<section class="mb-10">
+<div class="flex justify-between items-center mb-4">
+<h2 class="font-title-md text-title-md text-on-surface">Payment Methods</h2>
+<button class="text-primary font-bold text-label-sm">Add New</button>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Vodafone Cash Item -->
+<div class="flex items-center justify-between p-4 bg-surface border border-outline-variant rounded-xl hover:border-primary transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-error-container/20 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-error">smartphone</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-on-surface">Vodafone Cash</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">010 **** 8821</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+<!-- Visa Card Item -->
+<div class="flex items-center justify-between p-4 bg-surface border border-outline-variant rounded-xl hover:border-primary transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-primary-fixed/20 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">credit_card</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-on-surface">Visa Card</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">**** **** **** 4291</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Recent Transactions -->
+<section class="mb-10">
+<h2 class="font-title-md text-title-md text-on-surface mb-4">Recent Transactions</h2>
+<div class="bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<!-- Transaction 1 -->
+<div class="zebra-row flex items-center justify-between p-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">medical_services</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-medium text-on-surface">General Physician Consultation</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Oct 24, 2023</p>
+</div>
+</div>
+<p class="font-body-md text-body-md font-bold text-error">- 450.00 EGP</p>
+</div>
+<!-- Transaction 2 -->
+<div class="zebra-row flex items-center justify-between p-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-medium text-on-surface">Wallet Top-up</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Oct 22, 2023</p>
+</div>
+</div>
+<p class="font-body-md text-body-md font-bold text-secondary">+ 1,000.00 EGP</p>
+</div>
+<!-- Transaction 3 -->
+<div class="zebra-row flex items-center justify-between p-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">local_pharmacy</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-medium text-on-surface">Pharmacy Payment</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Oct 20, 2023</p>
+</div>
+</div>
+<p class="font-body-md text-body-md font-bold text-error">- 125.50 EGP</p>
+</div>
+<!-- Transaction 4 -->
+<div class="zebra-row flex items-center justify-between p-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">replay</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-medium text-on-surface">Refund: Lab Test</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Oct 15, 2023</p>
+</div>
+</div>
+<p class="font-body-md text-body-md font-bold text-secondary">+ 350.00 EGP</p>
+</div>
+</div>
+<button class="w-full mt-4 py-3 text-primary font-bold hover:bg-primary-container/5 transition-colors rounded-xl border border-dashed border-primary/30">
+                View All Transactions
+            </button>
+<div class="h-20"></div>
+</main>
+
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pb-safe bg-surface h-16 border-t border-outline-variant shadow-lg">
+<a href="feed.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined">rss_feed</span>
+<span class="font-label-sm text-label-sm">Feed</span>
+</a>
+<a href="dashboard.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<a href="action.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-label-sm text-label-sm">Actions</span>
+</a>
+<a href="schedule.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined">event_note</span>
+<span class="font-label-sm text-label-sm">Schedule</span>
+</a>
+<a href="more.html" class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-4 py-1 transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu</span>
+<span class="font-label-sm text-label-sm">More</span>
+</a>
+</nav>
+<script src="scripts/animations.js"></script>
+<script src="scripts/app.js"></script>
+<script src="scripts/mywallet.js"></script>
+</body></html>
